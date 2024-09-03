@@ -20,5 +20,5 @@ function solution(answers) {
       if (score === highestScore) return index + 1;
       return null;
     })
-    .filter((score) => score !== null);
+    .filter((personNum) => personNum !== null);
 }
