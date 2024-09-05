@@ -7,6 +7,7 @@ function solution(N, stages) {
     const stageIdx = stage - 1;
     challengeCnt[stageIdx] += 1;
   });
+  challengeCnt.pop();
 
   // 실패율 구하기
   return challengeCnt
@@ -17,7 +18,6 @@ function solution(N, stages) {
       peopleCnt -= currStageChallengeCnt;
       return stageInfo;
     })
-    .slice(0, -1)
     .sort((a, b) => b.failureRate - a.failureRate || a.stage - b.stage)
     .map(({ stage }) => stage);
 }
