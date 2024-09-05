@@ -5,7 +5,6 @@ const solution = (N, stages) => {
   for (let i = 0; i < N; i++) {
     for (const stage of stages) {
       if (stage >= i + 1) challenge[i]++;
-
       if (stage === i + 1) fail[i]++;
     }
   }
