@@ -11,5 +11,7 @@ const solution = (N, stages) => {
 
   const answer = challenge.map((v, i) => ({ stage: i + 1, rate: fail[i] / v }));
 
-  return answer.sort((a, b) => b.rate - a.rate).map((v) => v.stage);
+  return answer
+    .sort((a, b) => b.rate - a.rate || a.stage - b.stage)
+    .map((v) => v.stage);
 };
