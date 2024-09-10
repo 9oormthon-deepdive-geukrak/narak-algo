@@ -12,3 +12,5 @@ def solution(N, stages):
     answer = [i[0] for i in fail_rate]
     
     return answer
+
+    
