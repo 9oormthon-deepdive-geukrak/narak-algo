@@ -1,22 +1,18 @@
 const PAIR_BRACKET = {
-  "]": "[",
-  "}": "{",
-  ")": "(",
+  "[": "]",
+  "{": "}",
+  "(": ")",
 };
 
 function isValidBrackets(str) {
   const stack = [];
-  const open = Object.values(PAIR_BRACKET);
 
-  for (let i = 0; i < str.length; i++) {
-    let char = str[i];
-    if (open.includes(char)) {
+  for (const char of str) {
+    if (char in PAIR_BRACKET) {
       stack.push(char);
       continue;
     }
-    if (stack.length === 0) return false;
-    if (stack.at(-1) === PAIR_BRACKET[char]) {
-      stack.pop();
+    if (PAIR_BRACKET[stack.pop()] === char) {
       continue;
     }
 
