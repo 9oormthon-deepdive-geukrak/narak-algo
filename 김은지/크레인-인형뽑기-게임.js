@@ -46,11 +46,17 @@ function solution(board, moves) {
   for (const move of moves) {
     const index = move - 1;
     const currDoll = positionGroups[index].pop();
-    if (bucket.length > 0 && currDoll && bucket.at(-1) === currDoll) {
+
+    if (!currDoll) {
+      continue;
+    }
+
+    if (bucket.length > 0 && bucket.at(-1) === currDoll) {
       bucket.pop();
       bombCount += 1;
       continue;
     }
+
     bucket.push(currDoll);
   }
   return bombCount * 2;
