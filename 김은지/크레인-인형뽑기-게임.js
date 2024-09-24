@@ -31,19 +31,12 @@
 // }
 
 function setPositionGroups(board) {
-  const N = board.length;
-  const positionGroups = Array.from({ length: N + 1 }, () => []);
-
-  for (let i = 0; i < N; i++) {
-    for (let j = 0; j < N; j++) {
-      if (board[j][i] === 0) continue;
-      positionGroups[i + 1].push(board[j][i]);
-    }
-  }
-
-  positionGroups.forEach((positionGroup) => positionGroup.reverse());
-
-  return positionGroups;
+  return board[0].map((_, colIndex) =>
+    board
+      .map((row) => row[colIndex])
+      .filter((cell) => cell !== 0)
+      .reverse()
+  );
 }
 
 function solution(board, moves) {
@@ -51,7 +44,8 @@ function solution(board, moves) {
   const bucket = [];
   let bombPair = 0;
   for (const move of moves) {
-    const currDoll = positionGroups[move].pop();
+    const index = move - 1;
+    const currDoll = positionGroups[index].pop();
     if (bucket.length > 0 && currDoll && bucket.at(-1) === currDoll) {
       bucket.pop();
       bombPair += 1;
