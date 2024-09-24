@@ -42,16 +42,16 @@ function setPositionGroups(board) {
 function solution(board, moves) {
   const positionGroups = setPositionGroups(board);
   const bucket = [];
-  let bombPair = 0;
+  let bombCount = 0;
   for (const move of moves) {
     const index = move - 1;
     const currDoll = positionGroups[index].pop();
     if (bucket.length > 0 && currDoll && bucket.at(-1) === currDoll) {
       bucket.pop();
-      bombPair += 1;
+      bombCount += 1;
       continue;
     }
     bucket.push(currDoll);
   }
-  return bombPair * 2;
+  return bombCount * 2;
 }
