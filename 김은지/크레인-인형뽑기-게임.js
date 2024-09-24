@@ -1,3 +1,4 @@
+// 제출 코드
 // function setPositionGroups(board) {
 //   const N = board.length;
 //   const positionGroups = Array.from({ length: N + 1 }, () => []);
@@ -30,6 +31,7 @@
 //   return bombPair * 2;
 // }
 
+// 개선 코드
 function setPositionGroups(board) {
   return board[0].map((_, colIndex) =>
     board
