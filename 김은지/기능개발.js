@@ -19,22 +19,24 @@
 } */
 
 function solution(progresses, speeds) {
-  const completeTime = progresses.map((progress, i) => Math.ceil((100 - progress) / speeds[i]));
+  const completeTimes = progresses.map((progress, i) => Math.ceil((100 - progress) / speeds[i]));
 
-  const deployCnts = [];
-  let currDay = completeTime[0];
-  let i = 0;
-  let cnt = 0;
-  while (i <= completeTime.length) {
-    if (currDay >= completeTime[i]) {
-      cnt++;
-    } else {
-      deployCnts.push(cnt);
-      cnt = 1;
-      currDay = completeTime[i];
+  const deployGroupCnts = [];
+  let currDay = completeTimes[0];
+  let deployGroupCnt = 0;
+
+  for (const completeTime of completeTimes) {
+    if (currDay >= completeTime) {
+      deployGroupCnt++;
+      continue;
     }
-    i++;
+
+    deployGroupCnts.push(deployGroupCnt);
+    deployGroupCnt = 1;
+    currDay = completeTime;
   }
 
-  return deployCnts;
+  deployGroupCnts.push(deployGroupCnt);
+
+  return deployGroupCnts;
 }
