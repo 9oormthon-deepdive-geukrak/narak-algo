@@ -6,11 +6,11 @@
 const alphabets = "abcdefghijklmnopqrstuvwxyz".split("");
 
 const solution = (s, skip, index) => {
-	const filtered = alphabets.filter((alphabet) => !skip.includes(alphabet));
+  const filtered = alphabets.filter((alphabet) => !skip.includes(alphabet));
 
-	return [...s].reduce(
-		(acc, cur) =>
-			acc + filtered[(filtered.indexOf(cur) + index) % filtered.length],
-		"",
-	);
+  return [...s].reduce(
+    (acc, cur) =>
+      acc + filtered[(filtered.indexOf(cur) + index) % filtered.length],
+    ""
+  );
 };
