@@ -11,17 +11,15 @@ function solution(want, number, discount) {
 
   let cnt = 0;
 
-  while (startDate < endDate) {
+  while (endDate <= discount.length) {
     if ([...wantItems.entries()].every(([key, value]) => currTermItems.get(key) >= value)) {
       cnt++;
     }
 
     currTermItems.set(discount[startDate], currTermItems.get(discount[startDate]) - 1);
     startDate += 1;
-    if (endDate < discount.length) {
-      currTermItems.set(discount[endDate], (currTermItems.get(discount[endDate]) || 0) + 1);
-      endDate += 1;
-    }
+    currTermItems.set(discount[endDate], (currTermItems.get(discount[endDate]) || 0) + 1);
+    endDate += 1;
   }
 
   return cnt;
