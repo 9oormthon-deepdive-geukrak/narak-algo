@@ -17,7 +17,7 @@ const dijkstra = (towns) => {
         for (const { town, distance } of towns[current]) {
             const newDistance = distances[current].distance + distance
             if (distances[town].distance > newDistance)
-                distances[town].distance = distances[current].distance + distance
+                distances[town].distance = newDistance
         }
     }
 
