@@ -1,8 +1,22 @@
+function combinations(string, num) {
+  if (num === 0) return [""];
+  const result = [];
+
+  for (let i = 0; i < string.length; i++) {
+    const fixed = string[i];
+    for (const combination of combinations(string.slice(i + 1), num - 1)) {
+      result.push(fixed + combination);
+    }
+  }
+
+  return result;
+}
+
 function solution(orders, course) {
   const result = [];
-  for (const num of course) {
-    const menuCombMap = new Map();
 
+  const menuCombMap = new Map();
+  for (const num of course) {
     for (const order of orders) {
       // course 수 별 나올 수 있는 메뉴 조합
       const menuCombs = combinations([...order].sort().join(""), num);
@@ -13,10 +27,10 @@ function solution(orders, course) {
       });
     }
 
-    if (menuCombMap.size === 0) continue;
     const mostOrderCnt = Math.max(...menuCombMap.values());
     if (mostOrderCnt < 2) continue;
     result.push(...[...menuCombMap.entries()].filter(([, value]) => value === mostOrderCnt).map(([key]) => key));
+    menuCombMap.clear();
   }
 
   return result.sort();
