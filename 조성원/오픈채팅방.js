@@ -2,7 +2,7 @@ const solution = (record) => {
   const answer = [];
   const users = new Map();
 
-  record.map((string) => {
+  for (const string of record) {
     const data = string.split(" ");
 
     switch (data[0]) {
@@ -15,9 +15,9 @@ const solution = (record) => {
       default:
         break;
     }
-  });
+  }
 
-  record.map((string) => {
+  for (const string of record) {
     const data = string.split(" ");
 
     switch (data[0]) {
@@ -30,7 +30,7 @@ const solution = (record) => {
       default:
         break;
     }
-  });
+  }
 
   return answer;
 };
