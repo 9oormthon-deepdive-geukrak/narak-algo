@@ -1,14 +1,14 @@
 const calculateTotalPlays = (genrePlays, genre, play) =>
   genrePlays.has(genre) ? genrePlays.get(genre).totalPlays + play : play;
 
-const calculatePlays = (genrePlays, genre, index, play) =>
+const calculatePlays = (genrePlays, genre, play) =>
   genrePlays.has(genre)
     ? genrePlays
         .get(genre)
-        .plays.concat({ id: index, plays: play })
+        .plays.concat(play)
         .sort((a, b) => b.plays - a.plays)
         .slice(0, 2)
-    : [{ id: index, plays: play }];
+    : [play];
 
 function solution(genres, plays) {
   const genrePlays = new Map();
@@ -16,7 +16,10 @@ function solution(genres, plays) {
   genres.forEach((genre, index) => {
     genrePlays.set(genre, {
       totalPlays: calculateTotalPlays(genrePlays, genre, plays[index]),
-      plays: calculatePlays(genrePlays, genre, index, plays[index]),
+      plays: calculatePlays(genrePlays, genre, {
+        id: index,
+        plays: plays[index],
+      }),
     });
   });
 
