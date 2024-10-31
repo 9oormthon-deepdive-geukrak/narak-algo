@@ -27,12 +27,14 @@ const bfs = (maps, start, target) => {
       const nx = x + dx;
       const ny = y + dy;
 
-      const isInside =
-        nx >= 0 && nx < maps.length && ny >= 0 && ny < maps[0].length;
-      const isNotVisited = !visited[nx][ny];
-      const isNotWall = maps[nx][ny] !== "X";
-
-      if (isInside && isNotVisited && isNotWall) {
+      if (
+        nx >= 0 &&
+        nx < maps.length &&
+        ny >= 0 &&
+        ny < maps[0].length &&
+        !visited[nx][ny] &&
+        maps[nx][ny] !== "X"
+      ) {
         visited[nx][ny] = true;
         queue.push([nx, ny, dist + 1]);
       }
