@@ -1,11 +1,6 @@
 function solution(id_list, report, k) {
-  const reportMap = new Map();
+  const reportMap = new Map(id_list.map((id) => [id, new Set()]));
   const countMap = new Map();
-
-  for (const id of id_list) {
-    reportMap.set(id, new Set());
-    countMap.set(id, 0);
-  }
 
   for (const r of report) {
     const [from, to] = r.split(" ");
@@ -13,7 +8,7 @@ function solution(id_list, report, k) {
   }
 
   for (const reports of reportMap.values())
-    for (const to of reports) countMap.set(to, countMap.get(to) + 1);
+    for (const to of reports) countMap.set(to, (countMap.get(to) || 0) + 1);
 
   const suspendedUsers = new Set(
     [...countMap.entries()].filter(([, v]) => v >= k).map(([id]) => id)
